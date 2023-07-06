@@ -1,7 +1,9 @@
 mod support;
 
+use std::error;
+
 use anyhow::anyhow;
-use serenity::async_trait;
+use serenity::{async_trait, model::prelude::Embed};
 use serenity::model::channel::Message;
 use serenity::model::gateway::Ready;
 use serenity::prelude::*;
@@ -26,6 +28,13 @@ impl EventHandler for Bot {
         }
         if msg.content == "are we balling?" {
             if let Err(e) = msg.channel_id.say(&ctx.http, support::get_time()).await {
+                error!("Error sending message: {:?}", e);
+            }
+        }
+        if msg.content == "surely" {
+            if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
+                m.content("soooo genius")
+            }).await {
                 error!("Error sending message: {:?}", e);
             }
         }
