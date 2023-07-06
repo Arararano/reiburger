@@ -1,6 +1,7 @@
 mod support;
 
 use anyhow::anyhow;
+use serenity::model::Timestamp;
 use serenity::{async_trait};
 use serenity::model::channel::Message;
 use serenity::model::gateway::Ready;
@@ -32,7 +33,9 @@ impl EventHandler for Bot {
         if msg.content == "surely" {
             if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
                 m.content("soo genius?").embed(|e| {
-                    e.image("attachment://reiplush.jpg")
+                    e.title("surely")
+                    .image("attachment://reiplush.jpg")
+                    .timestamp(Timestamp::now())
                 })
                 .add_file("./reiplush.jpg")
 
