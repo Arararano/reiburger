@@ -31,13 +31,7 @@ impl EventHandler for Bot {
                 error!("Error sending message: {:?}", e);
             }
         }
-        if msg.content == "surely" {
-            if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
-                m.content("soooo genius")
-            }).await {
-                error!("Error sending message: {:?}", e);
-            }
-        }
+        
 
     }
 
