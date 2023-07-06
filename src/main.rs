@@ -31,7 +31,11 @@ impl EventHandler for Bot {
         }
         if msg.content == "surely" {
             if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
-                m.content("soo genius?")
+                m.content("soo genius?").embed(|e| {
+                    e.image("attachment://reiplush.jpg")
+                })
+                .add_file("./reiplush.jpg")
+
             }).await {
                 error!("Error sending message: {:?}", e);
             }
