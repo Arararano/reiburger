@@ -1,3 +1,5 @@
+mod support;
+
 use anyhow::anyhow;
 use serenity::async_trait;
 use serenity::model::channel::Message;
@@ -5,6 +7,7 @@ use serenity::model::gateway::Ready;
 use serenity::prelude::*;
 use shuttle_secrets::SecretStore;
 use tracing::{error, info};
+
 
 struct Bot;
 
@@ -21,6 +24,12 @@ impl EventHandler for Bot {
                 error!("Error sending message: {:?}", e);
             }
         }
+        if msg.content == "are we balling?" {
+            if let Err(e) = msg.channel_id.say(&ctx.http, support::get_time()).await {
+                error!("Error sending message: {:?}", e);
+            }
+        }
+
     }
 
     async fn ready(&self, _: Context, ready: Ready) {
