@@ -49,12 +49,7 @@ impl EventHandler for Bot {
         }
         if msg.content == "surely" {
             if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
-                m.content(format!{"soo genius? also path buf is: {}", self.path.display()}).embed(|e| {
-                    e.title("surely")
-                    .image(format!("attachment:/{}/reiplush.jpg",self.path.display()))
-                    .timestamp(Timestamp::now())
-                })
-                
+                m.content(format!{"soo genius? also path buf is: {}", self.path.display()}).add_file("/opt/shuttle/shuttle-storage/reiburger/staticreiplush.jpg")
 
             }).await {
                 error!("Error sending message: {:?}", e);
