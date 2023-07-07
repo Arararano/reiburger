@@ -49,7 +49,13 @@ impl EventHandler for Bot {
         }
         if msg.content == "surely" {
             if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
-                m.content("soo genius? https://media.entertainmentearth.com/assets/images/1dcf9f7c88944f6ebfde19cfca135e90xl.jpg")
+                m.content("soo genius? ")
+
+            }).await {
+                error!("Error sending message: {:?}", e);
+            }
+            if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
+                m.content("https://media.entertainmentearth.com/assets/images/1dcf9f7c88944f6ebfde19cfca135e90xl.jpg")
 
             }).await {
                 error!("Error sending message: {:?}", e);
