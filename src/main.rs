@@ -50,34 +50,30 @@ impl EventHandler for Bot {
         }
         if msg.content == "surely" {
             if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
+                m.content("soooo genius??")
+
+            }).await {error!("Error sending message: {:?}", e);}
+            
+            if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
                 m.content("https://media.entertainmentearth.com/assets/images/1dcf9f7c88944f6ebfde19cfca135e90xl.jpg")
-
-            }).await {error!("Error sending message: {:?}", e);}
-
-            std::thread::sleep(Duration::from_millis(700));
-
-            if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
-                m.content("...")
-            }).await {error!("Error sending message: {:?}", e);}
-
-            std::thread::sleep(Duration::from_millis(700));
-
-            if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
-                m.content("is this what you wanted?")
 
             }).await {error!("Error sending message: {:?}", e);}
             
         }
 
         if msg.content == "kys" {
+            
             if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
-                m.content("is this what you wanted?")
+                m.content("https://cdn.discordapp.com/attachments/1126374891277537355/1126972321861734562/IMG_8629.png")
 
             }).await {
                 error!("Error sending message: {:?}", e);
             }
+            
+            std::thread::sleep(Duration::from_millis(3000));            
+            
             if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
-                m.content("https://cdn.discordapp.com/attachments/1126374891277537355/1126972321861734562/IMG_8629.png")
+                m.content("is this what you wanted?")
 
             }).await {
                 error!("Error sending message: {:?}", e);
