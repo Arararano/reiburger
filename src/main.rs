@@ -49,7 +49,7 @@ impl EventHandler for Bot {
         }
         if msg.content == "surely" {
             if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
-                m.content("soo genius? ")
+                m.content("soo genius??")
 
             }).await {
                 error!("Error sending message: {:?}", e);
