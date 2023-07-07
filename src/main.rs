@@ -1,6 +1,7 @@
 mod support;
 
 use std::path::PathBuf;
+use std::time::Duration;
 
 use anyhow::anyhow;
 use serenity::model::Timestamp;
@@ -49,17 +50,22 @@ impl EventHandler for Bot {
         }
         if msg.content == "surely" {
             if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
-                m.content("soo genius??")
-
-            }).await {
-                error!("Error sending message: {:?}", e);
-            }
-            if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
                 m.content("https://media.entertainmentearth.com/assets/images/1dcf9f7c88944f6ebfde19cfca135e90xl.jpg")
 
-            }).await {
-                error!("Error sending message: {:?}", e);
-            }
+            }).await {error!("Error sending message: {:?}", e);}
+
+            std::thread::sleep(Duration::from_millis(700));
+
+            if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
+                m.content("...")
+            }).await {error!("Error sending message: {:?}", e);}
+
+            std::thread::sleep(Duration::from_millis(700));
+
+            if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
+                m.content("is this what you wanted?")
+
+            }).await {error!("Error sending message: {:?}", e);}
             
         }
 
