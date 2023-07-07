@@ -51,7 +51,7 @@ impl EventHandler for Bot {
             if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
                 m.content(format!{"soo genius? also path buf is: {}", self.path.display()}).embed(|e| {
                     e.title("surely")
-                    .image("attachment://reiplush.jpg")
+                    .image(format!("attachment:/{}/reiplush.jpg",self.path.display()))
                     .timestamp(Timestamp::now())
                 })
                 
