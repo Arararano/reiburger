@@ -63,6 +63,22 @@ impl EventHandler for Bot {
             
         }
 
+        if msg.content == "kys" {
+            if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
+                m.content("is this what you wanted?")
+
+            }).await {
+                error!("Error sending message: {:?}", e);
+            }
+            if let Err(e) = msg.channel_id.send_message(&ctx.http, |m| {
+                m.content("https://cdn.discordapp.com/attachments/1126374891277537355/1126972321861734562/IMG_8629.png")
+
+            }).await {
+                error!("Error sending message: {:?}", e);
+            }
+            
+        }
+
         
 
     
